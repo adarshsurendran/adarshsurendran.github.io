@@ -1,382 +1,607 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DentalOne</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        /* Custom CSS for vibrant and attractive design */
-        .hero-section {
-            background: linear-gradient(45deg, #4db6ac, #81d4fa, #0288d1, #26a69a);
-            background-size: 400%;
-            animation: colorShift 12s ease infinite;
-            position: relative;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="KMH Group of Hospitals - Comprehensive healthcare, doctor consultation, pharmacy, laboratory diagnostics, ECG and home care services.">
+  <title>KMH Group of Hospitals</title>
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-            opacity: 0.2;
-        }
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
 
-        @keyframes colorShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+    rel="stylesheet">
 
-        /* Header Styles */
-        .navbar {
-            background: linear-gradient(to right, rgba(0, 96, 100, 0.9), rgba(79, 195, 247, 0.9));
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-logo {
-            background: linear-gradient(to right, #b2ff59, #81d4fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: #b2ff59;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-link:hover {
-            color: #b2ff59;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-
-        .hamburger i {
-            font-size: 1.5rem;
-            color: #fff;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        /* Enhanced Media Queries for Navigation Menu */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            .nav-menu {
-                display: none;
-                width: 100%;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background: rgba(0, 96, 100, 0.95);
-                flex-direction: column;
-                padding: 1rem;
-                z-index: 10;
-            }
-            .nav-menu.active {
-                display: flex;
-                gap: 0.5rem;
-            }
-            .nav-link {
-                margin: 0.5rem 0;
-                font-size: 1.1rem;
-                text-align: center;
-            }
-            .hero-section h2 {
-                font-size: 2.5rem;
-            }
-            .hero-section p {
-                font-size: 1rem;
-            }
-            .btn-animated {
-                padding: 0.75rem 1.5rem;
-                font-size: 0.9rem;
-            }
-            .about-section, .testimonials-section, .contact-section {
-                padding: 3rem 0;
-            }
-            .about-section h2, .testimonials-section h2, .contact-section h2 {
-                font-size: 2rem;
-            }
-            .contact-form {
-                max-width: 100%;
-                padding: 0 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-section h2 {
-                font-size: 2rem;
-            }
-            .hero-section p {
-                font-size: 0.9rem;
-            }
-            .btn-animated {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
-            .about-section h3, .testimonials-section h3, .contact-section h3 {
-                font-size: 1.5rem;
-            }
-            .carousel-item {
-                padding: 0.5rem;
-            }
-            .testimonial-card {
-                max-width: 90%;
-            }
-        }
-
-        .btn-animated {
-            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .btn-animated:hover {
-            transform: scale(1.1);
-            background-color: #0288d1;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .services-section, .about-section, .testimonials-section, .contact-section {
-            background: linear-gradient(to right, #e0f7fa, #b3e5fc);
-        }
-
-        .footer {
-            background: linear-gradient(to right, #006064, #4fc3f7);
-        }
-
-        .service-card, .testimonial-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover, .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .carousel {
-            display: flex;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .carousel-inner {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .carousel-item {
-            min-width: 100%;
-            padding: 1rem;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 0.5rem;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .carousel-btn.prev {
-            left: 0;
-        }
-
-        .carousel-btn.next {
-            right: 0;
-        }
-
-        .contact-form input, .contact-form textarea {
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .contact-form input:focus, .contact-form textarea:focus {
-            border-color: #0288d1;
-            box-shadow: 0 0 5px rgba(2, 136, 209, 0.5);
-        }
-    </style>
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="font-sans">
-    <!-- Navigation Bar -->
-    <nav class="navbar text-white p-4 fixed w-full top-0 z-20">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold nav-logo">DentalOne</h1>
-            <div class="hamburger"><i class="fas fa-bars"></i></div>
-            <div class="nav-menu">
-                <a href="#home" class="nav-link hover:text-cyan-200">Home</a>
-                <a href="#about" class="nav-link hover:text-cyan-200">About Us</a>
-                <a href="#contact" class="nav-link hover:text-cyan-200">Contact</a>
-            </div>
+
+<body>
+
+  <!-- =========================
+       1. TOP INFORMATION BAR
+  ========================== -->
+  <div class="topbar">
+    <div class="container topbar-content">
+      <div class="topbar-info">
+        <span class="topbar-badge">
+          <span class="status-dot"></span> Open Today
+        </span>
+        <span class="topbar-text">📍 <strong>Main Hospital:</strong> KMH Hospital, Tripalur &nbsp;|&nbsp;
+          <strong>Branch:</strong> Tattamangalam</span>
+      </div>
+      <div class="topbar-contact">
+        <span>Emergency & Appointments:</span>
+        <a href="tel:+919400696411">📞 +91 94006 96411</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================
+       2. NAVIGATION
+  ========================== -->
+  <nav class="navbar">
+    <div class="container nav-content">
+
+      <a class="brand" href="#home">
+        <div class="logo-wrapper">
+          <img src="logo.png" alt="KMH Group Logo" class="brand-logo">
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section pt-24 pb-20 text-center min-h-screen flex items-center justify-center">
-        <div class="container mx-auto px-4 relative z-10">
-            <h2 class="text-5xl md:text-6xl font-bold text-white mb-4">Welcome to DentalOne</h2>
-            <p class="text-xl md:text-2xl text-white mb-6">Bright Smiles Start Here</p>
-            <a href="#contact" class="btn-animated bg-teal-500 text-white px-8 py-4 rounded-full text-lg inline-block">Book Now</a>
+        <span class="brand-text">
+          <strong>KMH GROUP OF HOSPITALS</strong>
+          <small>Kandaath Mohandas Memorial Health Group</small>
+        </span>
+      </a>
+
+      <button class="menu-button" id="menuButton" aria-label="Open navigation">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#doctors">KMH Group</a>
+        <a href="#appointment">Appointment</a>
+        <a href="#contact">Contact</a>
+        <a class="button button-primary nav-call-btn" href="tel:+919400696411">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          Call KMH Group
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- =========================
+       3. HERO SECTION
+  ========================== -->
+  <header class="hero" id="home">
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+      <div class="hero-badge-container">
+        <span class="badge">
+          <span class="badge-pulse"></span>
+          Everyday healthcare, close to home
+        </span>
+      </div>
+
+      <h1>Trusted care for your whole family.</h1>
+
+      <p class="hero-subtitle">
+        Comprehensive healthcare, doctor consultation, laboratory diagnostics, pharmacy,
+        ECG and home care services across KMH Group of Hospitals.
+      </p>
+
+      <div class="hero-buttons">
+        <a class="button button-light" href="#appointment">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          Book an Appointment
+        </a>
+
+        <a class="button button-whatsapp"
+          href="https://wa.me/919400696411?text=Hello%20KMH%20Group,%20I%20would%20like%20to%20book%20an%20appointment."
+          target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M18.403 5.638A8.919 8.919 0 0 0 12.005 3C7.048 3 3.018 7.028 3.016 11.984c0 1.583.414 3.128 1.2 4.49L3 21l4.636-1.216a8.948 8.948 0 0 0 4.368 1.144h.004c4.956 0 8.986-4.029 8.988-8.986 0-2.4-.934-4.657-2.593-6.304zM12.005 19.4a7.447 7.447 0 0 1-3.796-.04 7.42 7.42 0 0 1-.41-.223l-.271-.162-2.822.74.753-2.752-.178-.283a7.428 7.428 0 0 1-1.139-3.99c.002-4.116 3.351-7.464 7.468-7.464 1.994 0 3.869.778 5.277 2.187 1.408 1.409 2.184 3.284 2.182 5.28-.002 4.117-3.351 7.467-7.468 7.467zm4.097-5.594c-.225-.113-1.327-.655-1.533-.73-.205-.075-.354-.112-.504.113-.15.224-.58.73-.711.879-.131.15-.262.169-.487.056-.225-.113-.949-.349-1.808-1.115-.668-.596-1.12-1.332-1.251-1.557-.131-.225-.014-.347.098-.459.101-.101.225-.262.338-.393.113-.131.15-.262.225-.375.075-.15.038-.281-.019-.393-.056-.113-.505-1.217-.692-1.666-.182-.437-.367-.378-.504-.385l-.43-.008c-.15 0-.393.056-.599.281-.206.225-.786.768-.786 1.872 0 1.104.805 2.17 0.917 2.321.112.15 1.583 2.418 3.837 3.39 1.52.658 1.834.629 2.493.568.732-.068 1.327-.543 1.514-1.068.187-.525.187-.974.131-1.068-.056-.094-.206-.15-.431-.263z" />
+          </svg>
+          WhatsApp Booking
+        </a>
+      </div>
+
+      <!-- Hero Stats Bar -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <strong>Full</strong>
+          <span>In-House Lab & ECG</span>
         </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about" class="about-section py-20">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-8 text-teal-700">About Us</h2>
-            <div class="text-lg text-gray-800 max-w-3xl mx-auto">
-                <p class="mb-4">Welcome to DentalOne! We're here to revolutionize the way you book dental appointments.</p>
-                
-                <h3 class="text-2xl font-semibold text-teal-600 mb-2">Our Mission:</h3>
-                <p class="mb-4">At DentalOne, our mission is simple: to make finding and booking a dentist as easy and convenient as possible. We understand that your time is valuable, and that navigating the world of dental care can sometimes feel overwhelming. That's why we've created a platform that puts the power of choice and convenience directly in your hands.</p>
-                
-                <h3 class="text-2xl font-semibold text-teal-600 mb-2">What We Do:</h3>
-                <p class="mb-4">We've built a comprehensive network of trusted and verified dental professionals, giving you access to a wide range of services, from routine check-ups and cleanings to specialized procedures. Our user-friendly platform allows you to:</p>
-                <ul class="list-disc pl-6 mb-4">
-                    <li><strong>Discover Dentists:</strong> Search for dentists in your area based on location, specialty, and patient reviews.</li>
-                    <li><strong>Compare Options:</strong> Easily compare different practices, read detailed profiles, and view clinic photos.</li>
-                    <li><strong>Book Instantly:</strong> See real-time availability and book your appointment with just a few clicks, 24/7.</li>
-                    <li><strong>Manage Your Care:</strong> Keep track of your appointments, receive reminders, and access your booking history all in one place.</li>
-                </ul>
-                
-                <h3 class="text-2xl font-semibold text-teal-600 mb-2">Why Choose Us?</h3>
-                <p>We believe that everyone deserves access to quality dental care without the hassle. We are committed to transparency, security, and exceptional user experience. Our team is dedicated to building a platform that not only simplifies the booking process but also fosters a stronger connection between patients and dental professionals.</p>
-            </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <strong>On-Site</strong>
+          <span>Pharmacy Support</span>
         </div>
-    </section>
+      </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section py-20">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-8 text-teal-700">Contact Us</h2>
-            <p class="text-lg text-gray-800 max-w-2xl mx-auto text-center mb-6">
-                Ready to book an appointment? Reach out to us today!
-            </p>
-            <div class="max-w-lg mx-auto contact-form">
-                <div class="mb-4">
-                    <input type="text" placeholder="Your Name" class="w-full p-3 border rounded-lg focus:outline-none">
-                </div>
-                <div class="mb-4">
-                    <input type="email" placeholder="Your Email" class="w-full p-3 border rounded-lg focus:outline-none">
-                </div>
-                <div class="mb-4">
-                    <textarea placeholder="Your Message" class="w-full p-3 border rounded-lg focus:outline-none" rows="4"></textarea>
-                </div>
-                <button class="btn-animated bg-teal-500 text-white px-6 py-3 rounded-lg w-full">Send Message</button>
-            </div>
-            <div class="text-center mt-6">
-                <p class="text-gray-700 mb-2"><strong>Phone:</strong> (123) 456-7890</p>
-                <p class="text-gray-700 mb-2"><strong>Email:</strong> info@dentalone.com</p>
-                <p class="text-gray-700 mb-6"><strong>Address:</strong> 123 Smile St, Healthy City, HC 12345</p>
-            </div>
+    </div>
+  </header>
+
+
+  <!-- =========================
+       4. QUICK SERVICES STRIP
+  ========================== -->
+  <section class="quick-services">
+    <div class="container quick-grid">
+
+      <div class="quick-item">
+        <div class="quick-icon-box">🩺</div>
+        <div class="quick-text">
+          <strong>Doctor Consultation</strong>
+          <span>General and paediatric care</span>
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer class="footer text-white text-center py-6">
-        <p>&copy; 2025 DentalOne. All rights reserved.</p>
-    </footer>
+      <div class="quick-item">
+        <div class="quick-icon-box">🧪</div>
+        <div class="quick-text">
+          <strong>Laboratory</strong>
+          <span>Routine diagnostic testing</span>
+        </div>
+      </div>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('.nav-link').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                window.scrollTo({
-                    top: targetElement.offsetTop - 60, // Adjust for fixed nav height
-                    behavior: 'smooth'
-                });
-                // Close mobile menu after clicking
-                const navMenu = document.querySelector('.nav-menu');
-                const hamburgerIcon = document.querySelector('.hamburger i');
-                navMenu.classList.remove('active');
-                hamburgerIcon.classList.remove('fa-times');
-                hamburgerIcon.classList.add('fa-bars');
-            });
-        });
+      <div class="quick-item">
+        <div class="quick-icon-box">💊</div>
+        <div class="quick-text">
+          <strong>Pharmacy</strong>
+          <span>Convenient in-clinic service</span>
+        </div>
+      </div>
 
-        // Hamburger menu toggle
-        document.querySelector('.hamburger').addEventListener('click', () => {
-            const navMenu = document.querySelector('.nav-menu');
-            const hamburgerIcon = document.querySelector('.hamburger i');
-            navMenu.classList.toggle('active');
-            if (navMenu.classList.contains('active')) {
-                hamburgerIcon.classList.remove('fa-bars');
-                hamburgerIcon.classList.add('fa-times');
-            } else {
-                hamburgerIcon.classList.remove('fa-times');
-                hamburgerIcon.classList.add('fa-bars');
-            }
-        });
+      <div class="quick-item">
+        <div class="quick-icon-box">💓</div>
+        <div class="quick-text">
+          <strong>ECG & BP</strong>
+          <span>Basic cardiac monitoring</span>
+        </div>
+      </div>
 
-        // Button animation on click
-        document.querySelectorAll('.btn-animated').forEach(button => {
-            button.addEventListener('click', function () {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 100);
-            });
-        });
+    </div>
+  </section>
 
-        // Testimonial carousel
-        const carouselInner = document.querySelector('.carousel-inner');
-        const carouselItems = document.querySelectorAll('.carousel-item');
-        let currentIndex = 0;
 
-        function updateCarousel() {
-            carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
+  <!-- =========================
+       5. SERVICES SECTION
+  ========================== -->
+  <section class="section" id="services">
+    <div class="container">
 
-        document.querySelector('.carousel-btn.prev').addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1;
-            updateCarousel();
-        });
+      <div class="section-heading text-center">
+        <span class="section-label">Our services</span>
+        <h2>Essential healthcare under one roof</h2>
+        <p>
+          A convenient outpatient centre focused on accessible, professional
+          and patient-friendly care.
+        </p>
+      </div>
 
-        document.querySelector('.carousel-btn.next').addEventListener('click', () => {
-            currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
-            updateCarousel();
-        });
+      <div class="service-grid">
 
-        // Auto-slide every 5 seconds
-        setInterval(() => {
-            currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
-            updateCarousel();
-        }, 5000);
-    </script>
+        <article class="card">
+          <div class="service-icon">🩺</div>
+          <h3>General Medicine</h3>
+          <p>
+            Assessment and treatment for common illnesses, diabetes,
+            blood pressure and ongoing medical conditions.
+          </p>
+          <a href="#appointment" class="card-footer-link">
+            <span>Book Consultation</span> →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="service-icon">👶</div>
+          <h3>Paediatrics</h3>
+          <p>
+            Child health consultation, growth assessment and guidance for
+            common childhood health concerns.
+          </p>
+          <a href="#appointment" class="card-footer-link">
+            <span>Book Paediatric Care</span> →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="service-icon">🧪</div>
+          <h3>Laboratory Services</h3>
+          <p>
+            Routine blood and urine investigations with convenient sample
+            collection support.
+          </p>
+          <a href="tel:+919400696411" class="card-footer-link">
+            <span>Inquire Lab Test</span> →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="service-icon">💊</div>
+          <h3>Pharmacy</h3>
+          <p>
+            On-site access to prescribed medicines and essential healthcare
+            products.
+          </p>
+          <a href="tel:+919400696411" class="card-footer-link">
+            <span>Call Pharmacy</span> →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="service-icon">💓</div>
+          <h3>ECG & Monitoring</h3>
+          <p>
+            ECG, blood pressure, blood sugar and basic clinical monitoring
+            services.
+          </p>
+          <a href="#appointment" class="card-footer-link">
+            <span>Book ECG Test</span> →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="service-icon">📋</div>
+          <h3>Preventive Checkups</h3>
+          <p>
+            Routine health screening packages and wellness monitoring for all age groups.
+          </p>
+          <a href="#appointment" class="card-footer-link">
+            <span>Inquire Checkups</span> →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="service-icon">🏠</div>
+          <h3>Home Collection</h3>
+          <p>
+            Contact the clinic to check availability of home blood sample
+            collection in your area.
+          </p>
+          <a href="tel:+919400696411" class="card-footer-link">
+            <span>Request Home Collection</span> →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="service-icon">🏡</div>
+          <h3>Home Care</h3>
+          <p>
+            Dedicated home healthcare services, nursing assistance and medical support
+            provided in the comfort of your home.
+          </p>
+          <a href="tel:+919400696411" class="card-footer-link">
+            <span>Inquire Home Care</span> →
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       6. KMH GROUP LEADERSHIP & MANAGEMENT
+  ========================== -->
+  <section class="section doctors-section" id="doctors">
+    <div class="container">
+
+      <div class="section-heading text-center">
+        <span class="section-label">KMH Group</span>
+        <h2>Leadership & Management</h2>
+        <p>Key leaders guiding KMH Group of Hospitals in providing exceptional healthcare.</p>
+      </div>
+
+      <div class="doctor-grid">
+
+        <article class="doctor-card">
+          <div class="doctor-header doctor-blue">
+            <div class="doctor-avatar-circle">👩‍⚕️</div>
+            <span class="doctor-badge">Managing Director</span>
+          </div>
+
+          <div class="doctor-body">
+            <h3>Dr. Meghna Mohan</h3>
+            <p class="speciality">Managing Director</p>
+            <a href="#contact" class="doctor-action-btn">Contact KMH Group</a>
+          </div>
+        </article>
+
+        <article class="doctor-card">
+          <div class="doctor-header doctor-purple">
+            <div class="doctor-avatar-circle">👨‍⚕️</div>
+            <span class="doctor-badge">Chief Executive Officer</span>
+          </div>
+
+          <div class="doctor-body">
+            <h3>Dr. Praveen V</h3>
+            <p class="speciality">Chief Executive Officer (CEO)</p>
+            <a href="#contact" class="doctor-action-btn">Contact KMH Group</a>
+          </div>
+        </article>
+
+        <article class="doctor-card">
+          <div class="doctor-header doctor-teal">
+            <div class="doctor-avatar-circle">💼</div>
+            <span class="doctor-badge">General Manager</span>
+          </div>
+
+          <div class="doctor-body">
+            <h3>Lenin Sivadas</h3>
+            <p class="speciality">General Manager – Business & Operations</p>
+            <a href="#contact" class="doctor-action-btn">Contact KMH Group</a>
+          </div>
+        </article>
+
+        <article class="doctor-card">
+          <div class="doctor-header doctor-amber">
+            <div class="doctor-avatar-circle">📋</div>
+            <span class="doctor-badge">Administrator</span>
+          </div>
+
+          <div class="doctor-body">
+            <h3>Pramod Manghat</h3>
+            <p class="speciality">Hospital Administrator</p>
+            <a href="#contact" class="doctor-action-btn">Contact KMH Group</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       7. APPOINTMENT SECTION
+  ========================== -->
+  <section class="section" id="appointment">
+    <div class="container appointment-layout">
+
+      <div class="appointment-form-area">
+
+        <div class="section-heading">
+          <span class="section-label">Book a visit</span>
+          <h2>Request an appointment</h2>
+          <p>
+            Fill in the form. The button will open WhatsApp with your
+            appointment request ready to send.
+          </p>
+        </div>
+
+        <form id="bookingForm" class="appointment-card-form">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="patientName">Patient Name</label>
+              <input type="text" id="patientName" placeholder="Enter patient full name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number</label>
+              <input type="tel" id="phoneNumber" placeholder="Enter 10-digit contact number" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="preferredBranch">Hospital Branch / Location</label>
+              <select id="preferredBranch">
+                <option value="KMH Hospital, Tripalur (Main Office)">KMH Hospital, Tripalur (Main Office)</option>
+                <option value="KMH Health Centre, Tattamangalam (Secondary Branch)">KMH Health Centre, Tattamangalam
+                  (Secondary Branch)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="preferredDate">Preferred Date</label>
+              <input type="date" id="preferredDate">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="preferredDoctor">Preferred Department / Contact</label>
+
+            <select id="preferredDoctor">
+              <option>Dr. Meghna Mohan – Managing Director</option>
+              <option>Dr. Praveen V – Chief Executive Officer (CEO)</option>
+              <option>Lenin Sivadas – General Manager</option>
+              <option>Pramod Manghat – Hospital Administrator</option>
+              <option>General Healthcare / Enquiry</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="healthConcern">Health Concern / Symptoms</label>
+
+            <textarea id="healthConcern"
+              placeholder="Briefly describe the reason for consultation or symptoms..."></textarea>
+          </div>
+
+          <button class="button button-whatsapp form-submit-btn" type="submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18.403 5.638A8.919 8.919 0 0 0 12.005 3C7.048 3 3.018 7.028 3.016 11.984c0 1.583.414 3.128 1.2 4.49L3 21l4.636-1.216a8.948 8.948 0 0 0 4.368 1.144h.004c4.956 0 8.986-4.029 8.988-8.986 0-2.4-.934-4.657-2.593-6.304zM12.005 19.4a7.447 7.447 0 0 1-3.796-.04 7.42 7.42 0 0 1-.41-.223l-.271-.162-2.822.74.753-2.752-.178-.283a7.428 7.428 0 0 1-1.139-3.99c.002-4.116 3.351-7.464 7.468-7.464 1.994 0 3.869.778 5.277 2.187 1.408 1.409 2.184 3.284 2.182 5.28-.002 4.117-3.351 7.467-7.468 7.467zm4.097-5.594c-.225-.113-1.327-.655-1.533-.73-.205-.075-.354-.112-.504.113-.15.224-.58.73-.711.879-.131.15-.262.169-.487.056-.225-.113-.949-.349-1.808-1.115-.668-.596-1.12-1.332-1.251-1.557-.131-.225-.014-.347.098-.459.101-.101.225-.262.338-.393.113-.131.15-.262.225-.375.075-.15.038-.281-.019-.393-.056-.113-.505-1.217-.692-1.666-.182-.437-.367-.378-.504-.385l-.43-.008c-.15 0-.393.056-.599.281-.206.225-.786.768-.786 1.872 0 1.104.805 2.17 0.917 2.321.112.15 1.583 2.418 3.837 3.39 1.52.658 1.834.629 2.493.568.732-.068 1.327-.543 1.514-1.068.187-.525.187-.974.131-1.068-.056-.094-.206-.15-.431-.263z" />
+            </svg>
+            Send Request via WhatsApp
+          </button>
+
+        </form>
+      </div>
+
+
+      <!-- =========================
+           8. CONTACT & LOCATIONS PANEL
+      ========================== -->
+      <aside class="contact-panel" id="contact">
+
+        <span class="contact-label">Contact KMH Group</span>
+        <h2>Locations & Contact</h2>
+
+        <!-- Branch Selector Dropdown -->
+        <div class="branch-selector-group">
+          <label for="branchSelect">Select Hospital Location</label>
+          <select id="branchSelect" class="branch-dropdown">
+            <option value="tripalur">🏥 KMH Hospital, Tripalur (Main Office)</option>
+            <option value="tattamangalam">📍 KMH Health Centre, Tattamangalam (Secondary Branch)</option>
+          </select>
+        </div>
+
+        <!-- Dynamic Branch Details Card -->
+        <div id="branchDetailsCard" class="branch-details-card">
+          <div class="branch-header">
+            <span id="branchBadge" class="branch-badge main-badge">⭐ Main Hospital</span>
+            <h3 id="branchTitle">KMH Hospital, Tripalur</h3>
+            <small id="branchSubtitle" class="branch-subtitle">Main Head Office & Comprehensive Hospital</small>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <small>Location & Address</small>
+              <strong id="branchAddress">Tripalur, Palakkad, Kerala</strong>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <small>Appointments & Enquiries</small>
+              <a id="branchPhone" href="tel:+919400696411">+91 94006 96411</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-box">
+          <div class="map-icon-large">🗺️</div>
+          <h3 id="mapHeading">KMH Hospital, Tripalur on Maps</h3>
+          <p id="mapDescription">Get instant turn-by-turn directions to KMH Hospital, Tripalur (Main Head Office).</p>
+
+          <a id="mapBtn" class="button button-primary map-btn" href="https://maps.app.goo.gl/U5PwhCr9DrWZNQBt6"
+            target="_blank" rel="noopener">
+            Open Maps (Tripalur Main)
+          </a>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       9. LAB REPORT SECTION
+  ========================== -->
+  <section class="lab-section">
+    <div class="container">
+
+      <div class="lab-box">
+        <div class="lab-content">
+          <span class="section-label">Lab assistance</span>
+          <h3>Need help with your laboratory report?</h3>
+
+          <p>
+            Contact the clinic with your patient details for assistance.
+          </p>
+        </div>
+
+        <a class="button button-primary lab-btn" href="tel:+919400696411">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          Contact Laboratory
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       10. FOOTER
+  ========================== -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-col-main">
+          <div class="footer-brand">
+            <img src="logo.png" alt="KMH Group Logo" class="footer-logo">
+            <span class="footer-brand-title">KMH GROUP OF HOSPITALS</span>
+          </div>
+          <p>
+            Kandaath Mohandas Memorial Health Group, Tattamangalam.
+            Accessible, patient-focused outpatient healthcare for individuals and families.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="#services">Services</a>
+          <a href="#doctors">KMH Group</a>
+          <a href="#appointment">Appointment</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Get in Touch</h4>
+          <a href="tel:+919400696411" class="footer-phone">+91 94006 96411</a>
+          <span><strong>Main:</strong> Tripalur, Palakkad</span>
+          <span><strong>Branch:</strong> Tattamangalam, Palakkad</span>
+          <span class="footer-hours">Open Daily</span>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        <span>© 2026 KMH Group of Hospitals, Tattamangalam. All rights reserved.</span>
+        <span class="footer-tagline">Quality Healthcare Close to You</span>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- =========================
+       11. FLOATING WHATSAPP BUTTON
+  ========================== -->
+  <a class="floating-whatsapp" href="https://wa.me/919400696411?text=Hello%20KMH%20Group" target="_blank" rel="noopener"
+    aria-label="Contact KMH Group on WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M18.403 5.638A8.919 8.919 0 0 0 12.005 3C7.048 3 3.018 7.028 3.016 11.984c0 1.583.414 3.128 1.2 4.49L3 21l4.636-1.216a8.948 8.948 0 0 0 4.368 1.144h.004c4.956 0 8.986-4.029 8.988-8.986 0-2.4-.934-4.657-2.593-6.304zM12.005 19.4a7.447 7.447 0 0 1-3.796-.04 7.42 7.42 0 0 1-.41-.223l-.271-.162-2.822.74.753-2.752-.178-.283a7.428 7.428 0 0 1-1.139-3.99c.002-4.116 3.351-7.464 7.468-7.464 1.994 0 3.869.778 5.277 2.187 1.408 1.409 2.184 3.284 2.182 5.28-.002 4.117-3.351 7.467-7.468 7.467zm4.097-5.594c-.225-.113-1.327-.655-1.533-.73-.205-.075-.354-.112-.504.113-.15.224-.58.73-.711.879-.131.15-.262.169-.487.056-.225-.113-.949-.349-1.808-1.115-.668-.596-1.12-1.332-1.251-1.557-.131-.225-.014-.347.098-.459.101-.101.225-.262.338-.393.113-.131.15-.262.225-.375.075-.15.038-.281-.019-.393-.056-.113-.505-1.217-.692-1.666-.182-.437-.367-.378-.504-.385l-.43-.008c-.15 0-.393.056-.599.281-.206.225-.786.768-.786 1.872 0 1.104.805 2.17 0.917 2.321.112.15 1.583 2.418 3.837 3.39 1.52.658 1.834.629 2.493.568.732-.068 1.327-.543 1.514-1.068.187-.525.187-.974.131-1.068-.056-.094-.206-.15-.431-.263z" />
+    </svg>
+  </a>
+
+
+  <!-- Main JavaScript -->
+  <script src="script.js"></script>
+
 </body>
+
 </html>
